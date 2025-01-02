@@ -1,32 +1,32 @@
-import { clerkMiddleware } from "@clerk/nextjs/server";
-// import { NextResponse } from "next/server";
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
 
 // determine routes for student or teacher
-// const isStudentRoute = createRouteMatcher(["/user/(.*)"]);
-// const isTeacherRoute = createRouteMatcher(["/teacher/(.*)"]);
+const isStudentRoute = createRouteMatcher(["/user/(.*)"]);
+const isTeacherRoute = createRouteMatcher(["/teacher/(.*)"]);
 
-export default clerkMiddleware(async (auth) => {
+export default clerkMiddleware(async (auth, req) => {
   const { sessionClaims } = await auth();
   // store user type in `metadata`
-  // const userRole =
-  //   (sessionClaims?.metadata as { userType: "student" | "teacher" })
-  //     ?.userType || "student";
+  const userRole =
+    (sessionClaims?.metadata as { userType: "student" | "teacher" })
+      ?.userType || "student";
 
   //redirect
   //check if it's student route, if not, redirect to teacher
-  // if (isStudentRoute(req)) {
-  //   if (userRole !== "student") {
-  //     const url = new URL("/teacher/courses", req.url);
-  //     return NextResponse.redirect(url);
-  //   }
-  // }
+  if (isStudentRoute(req)) {
+    if (userRole !== "student") {
+      const url = new URL("/teacher/courses", req.url);
+      return NextResponse.redirect(url);
+    }
+  }
 
-  // if (isTeacherRoute(req)) {
-  //   if (userRole !== "teacher") {
-  //     const url = new URL("/user/courses", req.url);
-  //     return NextResponse.redirect(url);
-  //   }
-  // }
+  if (isTeacherRoute(req)) {
+    if (userRole !== "teacher") {
+      const url = new URL("/user/courses", req.url);
+      return NextResponse.redirect(url);
+    }
+  }
 });
 
 export const config = {
