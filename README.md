@@ -4,12 +4,18 @@ An eLearning platform that connects teachers and students for seamless course ma
 
 **Deployed Demo:** [Online Learning Marketplace](https://online-learning-marketplace.vercel.app/)
 
+<img width="908" alt="Screenshot 2025-01-08 at 2 16 20 PM" src="https://github.com/user-attachments/assets/209088c5-3a02-4121-8243-bf7dcb8fbd5e" />
+
+
 ## Features
 - **Two types of users**: Teachers and Students.
 - **User registration & sign-in**: Users can create an account and log in securely.
 - **Course purchase**: Students can browse, purchase, and pay for courses via Stripe.
 - **Course viewing**: Students can access and view their purchased courses.
 - **Teacher course management**: Teachers can add new courses and edit existing ones.
+
+<img width="904" alt="Screenshot 2025-01-08 at 2 16 56 PM" src="https://github.com/user-attachments/assets/bcf1f13a-b16f-476b-9a69-ec0c5c3ec938" />
+
 
 ## Technologies
 - **Frontend**: Next.js, TypeScript
